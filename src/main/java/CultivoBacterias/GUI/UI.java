@@ -120,7 +120,7 @@ public class UI {
                     int temperatura = Integer.parseInt(temperaturaField.getText());
                     String luminosidad = (String) luminosidadComboBox.getSelectedItem();
                     int dosisInicial = Integer.parseInt(dosisInicialField.getText());
-                    int diaIncremento = Integer.parseInt(diaConsumirField.getText());
+                    int diaConsumir = Integer.parseInt(diaConsumirField.getText());
                     int comidaFinal = Integer.parseInt(comidaFinalField.getText());
 
                     if (dosisInicial <= 0 || dosisInicial >= 300 || comidaFinal <= 0 || comidaFinal >= 300) {
@@ -128,7 +128,7 @@ public class UI {
                         return;
                     }
 
-                    DosisAlimento dosisAlimento = new DosisAlimento(dosisInicial, diaIncremento, comidaFinal);
+                    DosisAlimento dosisAlimento = new DosisAlimento(dosisInicial, diaConsumir, comidaFinal);
                     PoblacionBacterias poblacion = new PoblacionBacterias(nombre, fechaInicio, fechaFin, numBacterias, temperatura, luminosidad, dosisAlimento);
 
                     if(experimentoActual == null) {
@@ -137,6 +137,8 @@ public class UI {
                     experimentoActual.agregarPoblacion(poblacion);
 
                     JOptionPane.showMessageDialog(crearExperimentoFrame, "Población de bacterias agregada correctamente");
+
+                    limpiarCampos(crearExperimentoPanel);
                 }
             });
 
@@ -206,5 +208,13 @@ public class UI {
             mensaje.append("  Día ").append(dia).append(": ").append(dosisAlimento.calcularCantidadComida(dia, experimentoActual)).append("g\n");
         }
         textArea.setText(mensaje.toString());
+    }
+
+    private void limpiarCampos(JPanel crearExperimentoPanel) {
+        for (Component c : crearExperimentoPanel.getComponents()) {
+            if (c instanceof JXTextField) {
+                ((JXTextField) c).setText("");
+            }
+        }
     }
 }
