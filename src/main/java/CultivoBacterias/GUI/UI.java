@@ -2,6 +2,7 @@ package CultivoBacterias.GUI;
 
 
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -131,5 +132,35 @@ public class UI {
                     JOptionPane.showMessageDialog(crearExperimentoFrame, "Población de bacterias agregada correctamente");
                 }
             });
+
+            crearExperimentoPanel.add(nombreLabel);
+            crearExperimentoPanel.add(nombreField);
+            crearExperimentoPanel.add(fechaInicioLabel);
+            crearExperimentoPanel.add(fechaInicioPicker);
+            crearExperimentoPanel.add(fechaFinLabel);
+            crearExperimentoPanel.add(fechaFinPicker);
+            crearExperimentoPanel.add(numBacteriasLabel);
+            crearExperimentoPanel.add(numBacteriasField);
+            crearExperimentoPanel.add(temperaturaLabel);
+            crearExperimentoPanel.add(temperaturaField);
+            crearExperimentoPanel.add(luminosidadLabel);
+            crearExperimentoPanel.add(luminosidadComboBox);
+            crearExperimentoPanel.add(dosisInicialLabel);
+            crearExperimentoPanel.add(dosisInicialField);
+            crearExperimentoPanel.add(diaIncrementoLabel);
+            crearExperimentoPanel.add(diaIncrementoField);
+            crearExperimentoPanel.add(comidaInicialLabel);
+            crearExperimentoPanel.add(comidaInicialField);
+            crearExperimentoPanel.add(comidaFinalLabel);
+            crearExperimentoPanel.add(comidaFinalField);
+            crearExperimentoPanel.add(agregarPoblacionButton);
+
+            crearExperimentoPanel.setBorder(new EmptyBorder(10, 10, 10, 10));
+
+            crearExperimentoFrame.add(crearExperimentoPanel);
+            crearExperimentoFrame.pack();
+            crearExperimentoFrame.setLocationRelativeTo(null);
+            crearExperimentoFrame.setVisible(true);
+
     }
 }
