@@ -117,6 +117,11 @@ public class UI {
                     int diaIncremento = Integer.parseInt(diaIncrementoField.getText());
                     int comidaFinal = Integer.parseInt(comidaFinalField.getText());
 
+                    if (dosisInicial <= 0 || dosisInicial >= 300 || comidaFinal <= 0 || comidaFinal >= 300) {
+                        JOptionPane.showMessageDialog(crearExperimentoFrame, "Las cantidades de comida deben ser valores enteros entre 0 y 300", "Error", JOptionPane.ERROR_MESSAGE);
+                        return;
+                    }
+
                     DosisAlimento dosisAlimento = new DosisAlimento(dosisInicial, diaIncremento, dosisInicial, comidaFinal);
                     PoblacionBacterias poblacion = new PoblacionBacterias(nombre, fechaInicio, fechaFin, numBacterias, temperatura, luminosidad, dosisAlimento);
 
@@ -155,6 +160,5 @@ public class UI {
             crearExperimentoFrame.pack();
             crearExperimentoFrame.setLocationRelativeTo(null);
             crearExperimentoFrame.setVisible(true);
-
     }
 }
