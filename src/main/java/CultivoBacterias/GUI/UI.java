@@ -7,6 +7,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Date;
 
+import CultivoBacterias.Lógica.DosisAlimento;
+import CultivoBacterias.Lógica.Experimento;
+import CultivoBacterias.Lógica.PoblacionBacterias;
 import org.jdesktop.swingx.JXDatePicker;
 import org.jdesktop.swingx.JXTextField;
 
@@ -21,6 +24,8 @@ public class UI {
      JLabel nombreLabel, fechaInicioLabel, fechaFinLabel, numBacteriasLabel, temperaturaLabel, luminosidadLabel, dosisInicialLabel, diaIncrementoLabel, comidaInicialLabel, comidaFinalLabel;
      JXTextField nombreField, numBacteriasField, temperaturaField, luminosidadField, dosisInicialField, diaIncrementoField, comidaInicialField, comidaFinalField;
      JXDatePicker fechaInicioPicker, fechaFinPicker;
+
+     private Experimento experimentoActual;
 
     public UI() {
         frame = new JFrame("Laboratorio de Biólogos");
@@ -114,6 +119,16 @@ public class UI {
                     int diaIncremento = Integer.parseInt(diaIncrementoField.getText());
                     int comidaInicial = Integer.parseInt(comidaInicialField.getText());
                     int comidaFinal = Integer.parseInt(comidaFinalField.getText());
+
+                    DosisAlimento dosisAlimento = new DosisAlimento(dosisInicial, diaIncremento, comidaInicial, comidaFinal);
+                    PoblacionBacterias poblacion = new PoblacionBacterias(nombre, fechaInicio, fechaFin, numBacterias, temperatura, luminosidad, dosisAlimento);
+
+                    if(experimentoActual == null) {
+                        experimentoActual = new Experimento();
+                    }
+                    experimentoActual.agregarPoblacion(poblacion);
+
+                    JOptionPane.showMessageDialog(crearExperimentoFrame, "Población de bacterias agregada correctamente");
                 }
             });
     }
