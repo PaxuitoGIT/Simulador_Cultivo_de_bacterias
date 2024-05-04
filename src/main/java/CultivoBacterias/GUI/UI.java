@@ -241,6 +241,25 @@ public class UI {
     }
 
     private void eliminarPoblacion() {
+        if(experimentoActual != null && experimentoActual.getPoblaciones().size() > 0) {
+            String[] nombresPoblaciones= new String[experimentoActual.getPoblaciones().size()];
+            for (int i = 0; i < experimentoActual.getPoblaciones().size(); i++) {
+                nombresPoblaciones[i] = experimentoActual.getPoblaciones().get(i).getNombre();
+            }
 
+            String seleccion = (String) JOptionPane.showInputDialog(frame, "Selección de una población", "Seleccione una población", JOptionPane.QUESTION_MESSAGE, null, nombresPoblaciones, nombresPoblaciones[0]);
+
+            if (seleccion != null) {
+                for (PoblacionBacterias poblacion : experimentoActual.getPoblaciones()) {
+                    if (poblacion.getNombre().equals(seleccion)) {
+                        experimentoActual.eliminarPoblacion(poblacion);
+                        JOptionPane.showMessageDialog(frame, "Población de bacterias eliminada correctamente");
+                        break;
+                    }
+                }
+            }
+        } else {
+            JOptionPane.showMessageDialog(frame, "No hay poblaciones de bacterias en el experimento", "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }
 }
