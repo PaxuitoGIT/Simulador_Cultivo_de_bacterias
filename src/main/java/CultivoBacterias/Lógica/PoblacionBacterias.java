@@ -1,8 +1,9 @@
 package CultivoBacterias.Lógica;
 
 import java.util.Date;
+import java.io.Serializable;
 
-public class PoblacionBacterias {
+public class PoblacionBacterias implements Serializable {
     private String nombre;
     private Date fechaInicio;
     private Date fechaFin;

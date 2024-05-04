@@ -1,6 +1,7 @@
 package CultivoBacterias.Lógica;
 
-public class DosisAlimento {
+import java.io.Serializable;
+public class DosisAlimento implements Serializable {
     private int comidaInicial;
     private int diaConsumir;
     private int comidaFinal;
