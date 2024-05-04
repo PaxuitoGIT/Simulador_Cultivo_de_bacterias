@@ -5,13 +5,15 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Date;
+
 import org.jdesktop.swingx.JXDatePicker;
 import org.jdesktop.swingx.JXTextField;
 
 public class UI {
      JFrame frame, crearExperimentoFrame;
      JTextArea textArea;
-     JButton verDetallesButton;
+     JButton verDetallesButton, agregarPoblacionButton;
      JMenuBar menuBar;
      JMenu experimentoMenu;
      JMenuItem crearExperimentoItem, abrirExperimentoItem, guardarItem, guardarComoItem;
@@ -95,8 +97,24 @@ public class UI {
             comidaInicialLabel = new JLabel("Comida Inicial:");
             comidaInicialField = new JXTextField();
 
-            comidaFinalLabel = new JLabel("Comida Final:");
+            comidaFinalLabel = new JLabel("Comida Final (dia 30):");
             comidaFinalField = new JXTextField();
 
+            agregarPoblacionButton = new JButton("Agregar Población");
+            agregarPoblacionButton.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    String nombre = nombreField.getText();
+                    Date fechaInicio = fechaInicioPicker.getDate();
+                    Date fechaFin = fechaFinPicker.getDate();
+                    int numBacterias = Integer.parseInt(numBacteriasField.getText());
+                    int temperatura = Integer.parseInt(temperaturaField.getText());
+                    String luminosidad = (String) luminosidadComboBox.getSelectedItem();
+                    int dosisInicial = Integer.parseInt(dosisInicialField.getText());
+                    int diaIncremento = Integer.parseInt(diaIncrementoField.getText());
+                    int comidaInicial = Integer.parseInt(comidaInicialField.getText());
+                    int comidaFinal = Integer.parseInt(comidaFinalField.getText());
+                }
+            });
     }
 }
