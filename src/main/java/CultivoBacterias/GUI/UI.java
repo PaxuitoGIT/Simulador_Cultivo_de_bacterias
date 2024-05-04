@@ -18,7 +18,7 @@ import org.jdesktop.swingx.JXTextField;
 public class UI {
      JFrame frame, crearExperimentoFrame;
      JTextArea textArea;
-     JButton verDetallesButton, agregarPoblacionButton;
+     JButton verDetallesButton, agregarPoblacionButton, eliminarPoblacionButton;
      JMenuBar menuBar;
      JMenu experimentoMenu;
      JMenuItem crearExperimentoItem, abrirExperimentoItem, guardarItem, guardarComoItem;
@@ -71,6 +71,15 @@ public class UI {
             }
         });
         mainPanel.add(verDetallesButton);
+
+        eliminarPoblacionButton = new JButton("Eliminar Población");
+        eliminarPoblacionButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                eliminarPoblacion();
+            }
+        });
+        mainPanel.add(eliminarPoblacionButton);
 
         frame.add(mainPanel);
         frame.pack();
@@ -229,5 +238,9 @@ public class UI {
                 ((JXTextField) c).setText("");
             }
         }
+    }
+
+    private void eliminarPoblacion() {
+
     }
 }
