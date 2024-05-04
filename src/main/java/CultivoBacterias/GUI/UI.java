@@ -161,4 +161,13 @@ public class UI {
             crearExperimentoFrame.setLocationRelativeTo(null);
             crearExperimentoFrame.setVisible(true);
     }
+
+    private void mostrarDetallesPoblacion() {
+        if (experimentoActual != null && experimentoActual.getPoblaciones().size() > 0) {
+            String[] nombresPoblaciones = new String[experimentoActual.getPoblaciones().size()];
+            for (int i = 0; i < experimentoActual.getPoblaciones().size(); i++) {
+                nombresPoblaciones[i] = experimentoActual.getPoblaciones().get(i).getNombre();
+            }
+        }
+    }
 }
