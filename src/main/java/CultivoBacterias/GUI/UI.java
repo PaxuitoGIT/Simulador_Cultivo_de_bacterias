@@ -6,6 +6,7 @@ import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Calendar;
 import java.util.Date;
 
 import CultivoBacterias.Lógica.DosisAlimento;
@@ -139,6 +140,18 @@ public class UI {
                     JOptionPane.showMessageDialog(crearExperimentoFrame, "Población de bacterias agregada correctamente");
 
                     limpiarCampos(crearExperimentoPanel);
+                }
+            });
+
+            fechaInicioPicker.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    Date fechaInicio = fechaInicioPicker.getDate();
+                    Calendar cal = Calendar.getInstance();
+                    cal.setTime(fechaInicio);
+                    cal.add(Calendar.DATE, 29);
+                    Date fechaFinalSugerida = cal.getTime();
+                    fechaFinPicker.setDate(fechaFinalSugerida);
                 }
             });
 
