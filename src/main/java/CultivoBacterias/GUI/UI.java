@@ -170,6 +170,21 @@ public class UI {
             }
 
             String seleccion = (String) JOptionPane.showInputDialog(frame,"Selección de una población", "Seleccione una población", JOptionPane.QUESTION_MESSAGE, null, nombresPoblaciones, nombresPoblaciones[0]);
+
+            if (seleccion != null) {
+                for (PoblacionBacterias poblacion : experimentoActual.getPoblaciones()) {
+                    if (poblacion.getNombre().equals(seleccion)) {
+                        mostrarInformacionDetalladaPoblacion(poblacion);
+                        break;
+                    }
+                }
+            }
+        } else {
+            JOptionPane.showMessageDialog(frame, "No hay poblaciones de bacterias en el experimento", "Error", JOptionPane.ERROR_MESSAGE);
         }
+    }
+
+    private void mostrarInformacionDetalladaPoblacion(PoblacionBacterias poblacion) {
+
     }
 }
