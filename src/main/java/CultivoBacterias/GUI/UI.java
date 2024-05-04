@@ -22,7 +22,7 @@ public class UI {
      JMenuBar menuBar;
      JMenu experimentoMenu;
      JMenuItem crearExperimentoItem, abrirExperimentoItem, guardarItem, guardarComoItem;
-     JPanel crearExperimentoPanel;
+     JPanel crearExperimentoPanel, mainPanel, buttonsPanel;
      JLabel nombreLabel, fechaInicioLabel, fechaFinLabel, numBacteriasLabel, temperaturaLabel, luminosidadLabel, dosisInicialLabel, diaConsumirLabel, comidaInicialLabel, comidaFinalLabel;
      JXTextField nombreField, numBacteriasField, temperaturaField, luminosidadField, dosisInicialField, diaConsumirField, comidaInicialField, comidaFinalField;
      JXDatePicker fechaInicioPicker, fechaFinPicker;
@@ -56,7 +56,7 @@ public class UI {
 
         frame.setJMenuBar(menuBar);
 
-        JPanel mainPanel = new JPanel();
+        mainPanel = new JPanel();
         mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
 
         textArea = new JTextArea(20, 50);
@@ -70,7 +70,6 @@ public class UI {
                 mostrarDetallesPoblacion();
             }
         });
-        mainPanel.add(verDetallesButton);
 
         eliminarPoblacionButton = new JButton("Eliminar Población");
         eliminarPoblacionButton.addActionListener(new ActionListener() {
@@ -79,7 +78,12 @@ public class UI {
                 eliminarPoblacion();
             }
         });
-        mainPanel.add(eliminarPoblacionButton);
+        buttonsPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
+
+        buttonsPanel.add(verDetallesButton);
+        buttonsPanel.add(eliminarPoblacionButton);
+
+        frame.add(buttonsPanel, BorderLayout.SOUTH);
 
         frame.add(mainPanel);
         frame.pack();
