@@ -168,6 +168,8 @@ public class UI {
             for (int i = 0; i < experimentoActual.getPoblaciones().size(); i++) {
                 nombresPoblaciones[i] = experimentoActual.getPoblaciones().get(i).getNombre();
             }
+
+            String seleccion = (String) JOptionPane.showInputDialog(frame,"Selección de una población", "Seleccione una población", JOptionPane.QUESTION_MESSAGE, null, nombresPoblaciones, nombresPoblaciones[0]);
         }
     }
 }
