@@ -22,8 +22,8 @@ public class UI {
      JMenu experimentoMenu;
      JMenuItem crearExperimentoItem, abrirExperimentoItem, guardarItem, guardarComoItem;
      JPanel crearExperimentoPanel;
-     JLabel nombreLabel, fechaInicioLabel, fechaFinLabel, numBacteriasLabel, temperaturaLabel, luminosidadLabel, dosisInicialLabel, diaIncrementoLabel, comidaInicialLabel, comidaFinalLabel;
-     JXTextField nombreField, numBacteriasField, temperaturaField, luminosidadField, dosisInicialField, diaIncrementoField, comidaInicialField, comidaFinalField;
+     JLabel nombreLabel, fechaInicioLabel, fechaFinLabel, numBacteriasLabel, temperaturaLabel, luminosidadLabel, dosisInicialLabel, diaConsumirLabel, comidaInicialLabel, comidaFinalLabel;
+     JXTextField nombreField, numBacteriasField, temperaturaField, luminosidadField, dosisInicialField, diaConsumirField, comidaInicialField, comidaFinalField;
      JXDatePicker fechaInicioPicker, fechaFinPicker;
 
      private Experimento experimentoActual;
@@ -103,8 +103,8 @@ public class UI {
             dosisInicialLabel = new JLabel("Dosis Inicial de Alimento:");
             dosisInicialField = new JXTextField();
 
-            diaIncrementoLabel = new JLabel("Día de Incremento:");
-            diaIncrementoField = new JXTextField();
+            diaConsumirLabel = new JLabel("Día a partir del cual se consume la comida:");
+            diaConsumirField = new JXTextField();
 
             comidaFinalLabel = new JLabel("Comida Final (dia 30):");
             comidaFinalField = new JXTextField();
@@ -120,7 +120,7 @@ public class UI {
                     int temperatura = Integer.parseInt(temperaturaField.getText());
                     String luminosidad = (String) luminosidadComboBox.getSelectedItem();
                     int dosisInicial = Integer.parseInt(dosisInicialField.getText());
-                    int diaIncremento = Integer.parseInt(diaIncrementoField.getText());
+                    int diaIncremento = Integer.parseInt(diaConsumirField.getText());
                     int comidaFinal = Integer.parseInt(comidaFinalField.getText());
 
                     if (dosisInicial <= 0 || dosisInicial >= 300 || comidaFinal <= 0 || comidaFinal >= 300) {
@@ -128,7 +128,7 @@ public class UI {
                         return;
                     }
 
-                    DosisAlimento dosisAlimento = new DosisAlimento(dosisInicial, diaIncremento, dosisInicial, comidaFinal);
+                    DosisAlimento dosisAlimento = new DosisAlimento(dosisInicial, diaIncremento, comidaFinal);
                     PoblacionBacterias poblacion = new PoblacionBacterias(nombre, fechaInicio, fechaFin, numBacterias, temperatura, luminosidad, dosisAlimento);
 
                     if(experimentoActual == null) {
@@ -154,8 +154,8 @@ public class UI {
             crearExperimentoPanel.add(luminosidadComboBox);
             crearExperimentoPanel.add(dosisInicialLabel);
             crearExperimentoPanel.add(dosisInicialField);
-            crearExperimentoPanel.add(diaIncrementoLabel);
-            crearExperimentoPanel.add(diaIncrementoField);
+            crearExperimentoPanel.add(diaConsumirLabel);
+            crearExperimentoPanel.add(diaConsumirField);
             crearExperimentoPanel.add(comidaFinalLabel);
             crearExperimentoPanel.add(comidaFinalField);
             crearExperimentoPanel.add(agregarPoblacionButton);
@@ -203,7 +203,7 @@ public class UI {
         DosisAlimento dosisAlimento = poblacion.getDosisAlimento();
         mensaje.append("Dosis de alimento por día:\n");
         for (int dia = 1; dia <= 30; dia++) {
-            mensaje.append("  Día ").append(dia).append(": ").append(dosisAlimento.calcularCantidadComida(dia)).append("g\n");
+            mensaje.append("  Día ").append(dia).append(": ").append(dosisAlimento.calcularCantidadComida(dia, experimentoActual)).append("g\n");
         }
         textArea.setText(mensaje.toString());
     }
