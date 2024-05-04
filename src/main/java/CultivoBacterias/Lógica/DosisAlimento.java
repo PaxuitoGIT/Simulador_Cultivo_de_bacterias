@@ -21,7 +21,7 @@ public class DosisAlimento {
         // Si el día es mayor al día de incremento, pero menor o igual al día 30, se calcula la cantidad de comida
         else if (dia <= 30) {
             // Se calcula la cantidad de comida que se debe incrementar por día
-            double incrementoDiario = (double) (comidaFinal - comidaIncremento) / (30 - diaIncremento);
+            double incrementoDiario = (double) (comidaFinal - comidaInicial) / (30 - diaIncremento);
             // Se calcula la cantidad de comida para este día
             int cantidadComida = (int) Math.round(comidaIncremento + incrementoDiario * (dia - diaIncremento));
             // Se asegura de que la cantidad de comida no sea mayor que 300

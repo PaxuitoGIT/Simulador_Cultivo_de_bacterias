@@ -100,9 +100,6 @@ public class UI {
             diaIncrementoLabel = new JLabel("Día de Incremento:");
             diaIncrementoField = new JXTextField();
 
-            comidaInicialLabel = new JLabel("Comida Inicial:");
-            comidaInicialField = new JXTextField();
-
             comidaFinalLabel = new JLabel("Comida Final (dia 30):");
             comidaFinalField = new JXTextField();
 
@@ -118,10 +115,9 @@ public class UI {
                     String luminosidad = (String) luminosidadComboBox.getSelectedItem();
                     int dosisInicial = Integer.parseInt(dosisInicialField.getText());
                     int diaIncremento = Integer.parseInt(diaIncrementoField.getText());
-                    int comidaInicial = Integer.parseInt(comidaInicialField.getText());
                     int comidaFinal = Integer.parseInt(comidaFinalField.getText());
 
-                    DosisAlimento dosisAlimento = new DosisAlimento(dosisInicial, diaIncremento, comidaInicial, comidaFinal);
+                    DosisAlimento dosisAlimento = new DosisAlimento(dosisInicial, diaIncremento, dosisInicial, comidaFinal);
                     PoblacionBacterias poblacion = new PoblacionBacterias(nombre, fechaInicio, fechaFin, numBacterias, temperatura, luminosidad, dosisAlimento);
 
                     if(experimentoActual == null) {
@@ -149,8 +145,6 @@ public class UI {
             crearExperimentoPanel.add(dosisInicialField);
             crearExperimentoPanel.add(diaIncrementoLabel);
             crearExperimentoPanel.add(diaIncrementoField);
-            crearExperimentoPanel.add(comidaInicialLabel);
-            crearExperimentoPanel.add(comidaInicialField);
             crearExperimentoPanel.add(comidaFinalLabel);
             crearExperimentoPanel.add(comidaFinalField);
             crearExperimentoPanel.add(agregarPoblacionButton);
