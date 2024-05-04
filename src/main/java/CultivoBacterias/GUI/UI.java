@@ -63,6 +63,12 @@ public class UI {
         mainPanel.add(new JScrollPane(textArea));
 
         verDetallesButton = new JButton("Ver Detalles Población");
+        verDetallesButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                mostrarDetallesPoblacion();
+            }
+        });
         mainPanel.add(verDetallesButton);
 
         frame.add(mainPanel);
@@ -185,6 +191,20 @@ public class UI {
     }
 
     private void mostrarInformacionDetalladaPoblacion(PoblacionBacterias poblacion) {
+        StringBuilder mensaje = new StringBuilder();
+        mensaje.append("Detalles de la población de bacterias:\n\n");
+        mensaje.append("Nombre: ").append(poblacion.getNombre()).append("\n");
+        mensaje.append("Fecha de Inicio: ").append(poblacion.getFechaInicio()).append("\n");
+        mensaje.append("Fecha de Fin: ").append(poblacion.getFechaFin()).append("\n");
+        mensaje.append("Número de bacterias: ").append(poblacion.getNumBacterias()).append("\n");
+        mensaje.append("Temperatura: ").append(poblacion.getTemperatura()).append("\n");
+        mensaje.append("Luminosidad: ").append(poblacion.getLuminosidad()).append("\n");
 
+        DosisAlimento dosisAlimento = poblacion.getDosisAlimento();
+        mensaje.append("Dosis de alimento por día:\n");
+        for (int dia = 1; dia <= 30; dia++) {
+            mensaje.append("  Día ").append(dia).append(": ").append(dosisAlimento.calcularCantidadComida(dia)).append("g\n");
+        }
+        textArea.setText(mensaje.toString());
     }
 }
