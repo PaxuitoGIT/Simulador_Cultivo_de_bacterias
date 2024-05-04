@@ -9,11 +9,13 @@ import java.awt.event.ActionListener;
 import java.util.Calendar;
 import java.util.Date;
 
+import CultivoBacterias.Datos.ManejadorArchivos;
 import CultivoBacterias.Lógica.DosisAlimento;
 import CultivoBacterias.Lógica.Experimento;
 import CultivoBacterias.Lógica.PoblacionBacterias;
 import org.jdesktop.swingx.JXDatePicker;
 import org.jdesktop.swingx.JXTextField;
+
 
 public class UI {
      JFrame frame, crearExperimentoFrame;
@@ -28,6 +30,7 @@ public class UI {
      JXDatePicker fechaInicioPicker, fechaFinPicker;
 
      private Experimento experimentoActual;
+     private String nombreArchivoActual;
 
     public UI() {
         frame = new JFrame("Laboratorio de Biólogos");
@@ -45,8 +48,46 @@ public class UI {
             }
         });
         abrirExperimentoItem = new JMenuItem("Abrir Experimento");
+        abrirExperimentoItem.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String nombreArchivo = ManejadorArchivos.seleccionarArchivo(frame, "Abrir Experimento", FileDialog.LOAD);
+                if (nombreArchivo != null) {
+                    experimentoActual = ManejadorArchivos.cargarExperimento(nombreArchivo);
+                    if (experimentoActual != null) {
+                        JOptionPane.showMessageDialog(frame, "Experimento cargado correctamente");
+                    } else {
+                        JOptionPane.showMessageDialog(frame, "Error al cargar el experimento", "Error", JOptionPane.ERROR_MESSAGE);
+                    }
+                }
+            }
+        });
         guardarItem = new JMenuItem("Guardar");
+        guardarItem.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (nombreArchivoActual != null) {
+                    ManejadorArchivos.guardarExperimento(experimentoActual, nombreArchivoActual);
+                } else {
+                    nombreArchivoActual = ManejadorArchivos.seleccionarArchivo(frame, "Guardar Experimento", FileDialog.SAVE);
+                    if (nombreArchivoActual != null) {
+                        nombreArchivoActual = ManejadorArchivos.agregarExtensionJSON(nombreArchivoActual);
+                        ManejadorArchivos.guardarExperimento(experimentoActual, nombreArchivoActual);
+                    }
+                }
+            }
+        });
         guardarComoItem = new JMenuItem("Guardar Como");
+        guardarComoItem.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String nombreArchivo = ManejadorArchivos.seleccionarArchivo(frame, "Guardar Experimento", FileDialog.SAVE);
+                if (nombreArchivo != null) {
+                    nombreArchivo = ManejadorArchivos.agregarExtensionJSON(nombreArchivo);
+                    ManejadorArchivos.guardarExperimento(experimentoActual, nombreArchivo);
+                }
+            }
+        });
 
         experimentoMenu.add(crearExperimentoItem);
         experimentoMenu.add(abrirExperimentoItem);

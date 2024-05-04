@@ -2,6 +2,7 @@ package CultivoBacterias.Datos;
 
 import CultivoBacterias.Lógica.Experimento;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import javax.swing.*;
 import java.awt.*;
@@ -13,7 +14,7 @@ public class ManejadorArchivos {
     public static void guardarExperimento(Experimento experimento, String nombreArchivo) {
         String rutaCompleta = DIRECTORIO_PROYECTO + File.separator + nombreArchivo;
         try (Writer writer = new FileWriter(rutaCompleta)) {
-            Gson gson = new Gson();
+            Gson gson = new GsonBuilder().setPrettyPrinting().create();
             gson.toJson(experimento, writer);
             System.out.println("El experimento se ha guardado correctamente en " + rutaCompleta);
         } catch (IOException e) {
@@ -43,6 +44,14 @@ public class ManejadorArchivos {
             return nombreArchivo;
         } else {
             return null;
+        }
+    }
+
+    public static String agregarExtensionJSON(String nombreArchivo) {
+        if (nombreArchivo != null && !nombreArchivo.endsWith(".json")) {
+            return nombreArchivo + ".json";
+        } else {
+            return nombreArchivo;
         }
     }
 }
