@@ -1,9 +1,17 @@
+/*
+ * PoblacionBacterias.java
+ * Esta clase representa una población de bacterias en un experimento.
+ * Contiene información sobre el nombre, fechas de inicio y fin del experimento,
+ * número de bacterias, temperatura, luminosidad y dosis de alimento.
+ */
+
 package CultivoBacterias.Lógica;
 
 import java.util.Date;
 import java.io.Serializable;
 
 public class PoblacionBacterias implements Serializable {
+    // Atributos de la clase PoblacionBacterias
     private String nombre;
     private Date fechaInicio;
     private Date fechaFin;
@@ -12,6 +20,7 @@ public class PoblacionBacterias implements Serializable {
     private String luminosidad;
     private DosisAlimento dosisAlimento;
 
+    // Constructor de la clase PoblacionBacterias
     public PoblacionBacterias(String nombre, Date fechaInicio, Date fechaFin, int numBacterias, int temperatura, String luminosidad, DosisAlimento dosisAlimento) {
         this.nombre = nombre;
         this.fechaInicio = fechaInicio;
@@ -22,6 +31,7 @@ public class PoblacionBacterias implements Serializable {
         this.dosisAlimento = dosisAlimento;
     }
 
+    // Getters y setters de la clase PoblacionBacterias
     public DosisAlimento getDosisAlimento() {
         return dosisAlimento;
     }
