@@ -3,6 +3,8 @@ package CultivoBacterias.Datos;
 import CultivoBacterias.Lógica.Experimento;
 import com.google.gson.Gson;
 
+import javax.swing.*;
+import java.awt.*;
 import java.io.*;
 
 public class ManejadorArchivos {
@@ -32,4 +34,15 @@ public class ManejadorArchivos {
         return experimento;
     }
 
+    public static String seleccionarArchivo(JFrame frame, String titulo, int modo) {
+        FileDialog dialogoArchivo = new FileDialog(frame, titulo, modo);
+        dialogoArchivo.setDirectory(DIRECTORIO_PROYECTO);
+        dialogoArchivo.setVisible(true);
+        String nombreArchivo = dialogoArchivo.getFile();
+        if (nombreArchivo != null) {
+            return nombreArchivo;
+        } else {
+            return null;
+        }
+    }
 }
