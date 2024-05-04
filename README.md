@@ -27,7 +27,9 @@ deben ser menor a 300 y el dia en el que empiecen a consumir (decrecer los alime
 
 Los errores que no he podido solucionar ha sido que si la comida final es mayor que la comida inicial y la comida inicial llega a ser más que la comida final antes del día de consumición, empieza del revés (aumenta) en vez de decrecer.
 
+Otro error que ha surgido es que si se ejecuta el "Main" desde el IntelliJ, debería poder cargar el archivo "Ejemplo.json" y leer sus datos pero el ejecutable .jar no es 
+capaz de cargar ese ejemplo en concreto. Sin embargo, si se ha guardado un experimento .json desde el ejecutable .jar y se carga el archivo .json creado por el ejecutable, sí deja leer los datos de forma correcta.
+
 ## Conclusión 
 
-Se ha creado un simulador de cultivo de bacterias cumpliendo lo más posible con las instrucciones dadas estructurando el programa en 3 paquetes, con un diseño simple para el usuario,
-pudiendo leer y guardar los datos en un .JSON.
+Se ha creado un simulador de cultivo de bacterias cumpliendo lo más posible con las instrucciones dadas estructurando el programa en 3 paquetes, con un diseño simple para el usuario, pudiendo leer y guardar los datos en un .JSON.
